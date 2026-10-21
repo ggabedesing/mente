@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mente — memória visual</title>
+  <meta name="description" content="Memória visual do Gabriel: automação, renda extra, engenharia, segurança, design, edição, raspagem, e-mails e IA — tudo interligado." />
+  <link rel="stylesheet" href="assets/painel.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
+</head>
+<body>
+  <header class="topo">
+    <div class="logo">🧠</div>
+    <div>
+      <h1>Mente</h1>
+      <div class="sub" id="subtitulo">memória visual · tudo interligado</div>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn-busca" id="abrir-busca" type="button" aria-label="Abrir pesquisa">
+      🔎 Buscar assunto, tag, ferramenta… <kbd>Ctrl K</kbd>
+    </button>
+  </header>
+
+  <section class="metrics" id="metricas"></section>
+
+  <nav class="chips" id="chips" aria-label="Filtrar por área"></nav>
+
+  <main class="grade" id="grade"></main>
+
+  <div class="secao-titulo">📜 Receitas da memória</div>
+  <section class="receitas" id="receitas"></section>
+
+  <footer class="rodape-site">
+    <b>Mente</b> é só GitHub: fonte da verdade em <a href="dados/catalogo.json">dados/catalogo.json</a>,
+    notas em <a href="memoria/">memoria/</a>, export para IA em <a href="MENTE.md">MENTE.md</a>.
+    Para dar conhecimento a uma IA: cole o <a href="MENTE.md">MENTE.md</a> no contexto
+    (ou use Repomix/Gitingest num repositório — a receita está em
+    <a href="memoria/02-receita-repo-para-ia.md">memoria/02</a>).
+  </footer>
+
+  <!-- ===== busca flutuante ===== -->
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Pesquisa">
+    <div class="painel-busca">
+      <input id="input-busca" type="text" placeholder="O que você quer achar? ex.: raspagem, e-mail, agentes, IA…" autocomplete="off" />
+      <div class="dica">↑↓ navegar · Enter abrir · Esc fechar · busca por assunto, tag ou "quando usar"</div>
+      <div class="resultados" id="resultados"></div>
+    </div>
+  </div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
