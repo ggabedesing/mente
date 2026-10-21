@@ -1,0 +1,33 @@
+name: Validar Mente
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "0 6 * * 1" # toda segunda, checar links
+  workflow_dispatch:
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validar dados/catalogo.json
+        run: node scripts/validar-catalogo.js
+
+      - name: Checar links (HTTP status)
+        run: |
+          falha=0
+          for url in $(node -e "const c=require('./dados/catalogo.json');console.log(c.itens.map(i=>i.url).join('\n'))"); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 15 -A "Mozilla/5.0" "$url" || echo 000)
+            if [ "$code" = "000" ] || [ "$code" -ge 400 ]; then
+              echo "✖ $code $url"
+              falha=1
+            else
+              echo "✔ $code $url"
+            fi
+          done
+          exit $falha
